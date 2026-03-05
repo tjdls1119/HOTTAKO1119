@@ -8,13 +8,14 @@
   <style>
     :root{
       --bg:#070809;
-      --card:#1c1d20;
       --line:rgba(255,255,255,.14);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
       --accent:#ff4d4d;
       --shadow:0 14px 38px rgba(0,0,0,.45);
       --radius:18px;
+      --panelbg: rgba(255,255,255,.05);
+      --rowbg: rgba(0,0,0,.20);
     }
     *{ box-sizing:border-box; }
     body{
@@ -26,38 +27,51 @@
         linear-gradient(#0a0b0d, #050607 40%, #050607);
     }
 
+    /* ===== Header (네이버 느낌: 왼쪽 로고) ===== */
     header{
       background: var(--accent);
       color:#fff;
-      padding: 18px 16px;
+      padding: 14px 16px;
       font-weight: 950;
-      letter-spacing: .5px;
+      letter-spacing: .2px;
     }
     .header-inner{
       max-width: 1100px;
       margin:0 auto;
       display:flex;
       align-items:center;
-      justify-content:center;
+      justify-content:flex-start;
       gap:10px;
-      font-size: 22px;
+    }
+    .brand-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:#fff;
+    }
+    .logo{
+      width:42px;
+      height:auto;
+      object-fit:contain;
+      display:block;
+    }
+    .brand-title{
+      font-size:20px;
+      font-weight:950;
+      line-height:1;
     }
 
-    .wrap{ max-width: 1100px; margin:0 auto; padding: 26px 16px 80px; }
-    .subtitle{
-      text-align:center;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      margin: 12px 0 18px;
-      letter-spacing:.2px;
-    }
+    .wrap{ max-width: 1100px; margin:0 auto; padding: 22px 16px 40px; }
 
-    /* ✅ 탭 4개 */
+    /* ✅ (요청) header와 탭 사이 문구 제거 완료: subtitle 없음 */
+
+    /* ===== Tabs (4개) ===== */
     .tabs{
       display:grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 14px;
-      margin: 10px 0 18px;
+      margin: 14px 0 18px;
     }
     .tab{
       border: 1px solid var(--line);
@@ -86,11 +100,11 @@
       background: linear-gradient(180deg, rgba(255,77,77,.22), rgba(255,255,255,.03));
     }
 
-    /* ✅ 가격표 패널 */
+    /* ===== Panel ===== */
     .panel{
       border:1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
+      background: var(--panelbg);
       box-shadow: var(--shadow);
       padding: 18px;
     }
@@ -115,6 +129,7 @@
       white-space: nowrap;
     }
 
+    /* 기본 리스트(핫도그/타코/세트) */
     .price-list{
       display:grid;
       grid-template-columns: 1fr;
@@ -127,7 +142,7 @@
       gap:12px;
       padding: 12px 12px;
       border-radius: 14px;
-      background: rgba(0,0,0,.20);
+      background: var(--rowbg);
       border: 1px solid rgba(255,255,255,.10);
     }
     .left{
@@ -153,7 +168,6 @@
       white-space: nowrap;
       letter-spacing:.2px;
     }
-
     .note{
       margin-top: 12px;
       font-size: 12px;
@@ -161,6 +175,82 @@
       line-height: 1.6;
     }
 
+    /* ✅ 음료(커피) 표 스타일 */
+    .table-wrap{
+      overflow:auto;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    .price-table{
+      width:100%;
+      border-collapse: collapse;
+      min-width: 520px;
+    }
+    .price-table th,
+    .price-table td{
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      font-size: 14px;
+    }
+    .price-table thead th{
+      color: rgba(255,255,255,.85);
+      font-weight: 950;
+      text-transform: none;
+    }
+    .price-table th.left,
+    .price-table td.left{
+      text-align:left;
+      width: 60%;
+    }
+    .price-table th:not(.left),
+    .price-table td:not(.left){
+      text-align:right;
+      width: 20%;
+      white-space: nowrap;
+    }
+    .extra-title{
+      margin: 16px 0 10px;
+      font-weight: 950;
+      color: rgba(255,255,255,.88);
+    }
+
+    /* ===== Footer (네이버 느낌: 가운데 링크들) ===== */
+    .footer{
+      margin-top: 60px;
+      padding: 28px 16px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      text-align:center;
+    }
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap: 10px 18px;
+      margin-bottom: 14px;
+    }
+    .footer-links a{
+      color: rgba(255,255,255,.72);
+      text-decoration:none;
+      font-size: 13px;
+    }
+    .footer-links a:hover{
+      color: #fff;
+      text-decoration: underline;
+    }
+    .footer-info{
+      color: rgba(255,255,255,.62);
+      font-size: 12px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .footer-copy{
+      color: rgba(255,255,255,.45);
+      font-size: 12px;
+    }
+
+    /* Responsive */
     @media (max-width: 820px){
       .tabs{ grid-template-columns: 1fr 1fr; }
       .panel-head{ flex-direction:column; align-items:flex-start; }
@@ -169,19 +259,24 @@
     }
     @media (max-width: 480px){
       .tabs{ grid-template-columns: 1fr; }
-      .header-inner{ font-size: 20px; }
+      .brand-title{ font-size: 18px; }
+      .logo{ width: 38px; }
     }
   </style>
 </head>
 
 <body>
+  <!-- ✅ 왼쪽 상단 로고(네이버 느낌) -->
   <header>
-    <div class="header-inner">🔥 HOT&TAKO1119</div>
+    <div class="header-inner">
+      <a class="brand-link" href="./" aria-label="HOT&TAKO1119 홈">
+        <img src="mascot.png" class="logo" alt="HOT&TAKO1119 마스코트">
+        <div class="brand-title">HOT&TAKO1119</div>
+      </a>
+    </div>
   </header>
 
   <div class="wrap">
-    <div class="subtitle">수제 아메리칸 핫도그&타코야끼</div>
-
     <!-- ✅ 탭 4개 -->
     <div class="tabs" role="tablist" aria-label="메뉴 탭">
       <div class="tab active" data-tab="hotdog" role="tab" aria-selected="true">
@@ -212,12 +307,33 @@
     <div class="panel" id="panel"></div>
   </div>
 
+  <!-- ✅ 네이버 느낌 Footer + 하단 정보 -->
+  <footer class="footer">
+    <div class="footer-links">
+      <!-- 필요하면 링크 주소(href) 실제 페이지/지도/인스타로 바꾸면 됨 -->
+      <a href="#">회사소개</a>
+      <a href="#">이용약관</a>
+      <a href="#">개인정보처리방침</a>
+      <a href="#">고객센터</a>
+      <a href="#">오시는길</a>
+    </div>
+
+    <div class="footer-info">
+      📍 주소: (여기에 주소 넣기)<br>
+      ⏰ 영업시간: (예: 11:00 ~ 22:00 / 재료 소진 시 조기 마감)<br>
+      📞 전화: <a href="tel:01000000000" style="color:rgba(255,255,255,.72); text-decoration:none;">010-0000-0000</a>
+    </div>
+
+    <div class="footer-copy">© HOT&TAKO1119</div>
+  </footer>
+
   <script>
-    // ✅ 메뉴판 이미지 기준 반영(가격/구성)
+    // ✅ 메뉴 데이터 (네 메뉴판 기준)
     const MENU = {
       hotdog: {
         title: "🌭 아메리칸 핫도그",
         subtitle: "주문 즉시 조리",
+        type: "list",
         items: [
           { name: "클래식 핫도그", desc: "", price: "5,000원" },
           { name: "갈릭 핫도그", desc: "", price: "5,500원" },
@@ -233,6 +349,7 @@
       tako: {
         title: "🍡 수제 타코야끼",
         subtitle: "조리시간 15~20초 소요",
+        type: "list",
         items: [
           { name: "오리지널", desc: "8알 / 12알 / 20알", price: "5,000 / 7,000 / 12,000원" },
           { name: "매콤", desc: "8알 / 12알 / 20알", price: "5,000 / 7,000 / 12,000원" },
@@ -247,36 +364,38 @@
         note: "※ 조리시간이 있어요(15~20초). 바쁠 땐 조금만 기다려주세요!"
       },
 
+      // ✅ 커피는 표 스타일(예시 스타일)로 보이게
       drink: {
         title: "☕ 커피 & 음료",
-        subtitle: "HOT / ICE",
-        items: [
-          { name: "아메리카노", desc: "HOT 2,500 / ICE 2,500", price: "" },
-          { name: "헤이즐넛 아메리카노", desc: "HOT 2,700 / ICE 3,000", price: "" },
-          { name: "카페라떼", desc: "HOT 3,000 / ICE 3,300", price: "" },
-          { name: "바닐라라떼", desc: "HOT 3,500 / ICE 3,800", price: "" },
-
-          { name: "아이스티", desc: "", price: "3,500원" },
-          { name: "딸기라떼", desc: "", price: "4,000원" },
-          { name: "초코라떼", desc: "", price: "4,000원" },
-          { name: "자몽/레몬/청포도 에이드", desc: "", price: "4,500원" },
-
-          { name: "블루베리 요거트", desc: "", price: "4,800원" },
-          { name: "딸기 / 망고 요거트", desc: "", price: "4,800원" },
-
-          { name: "자몽차 / 유자차", desc: "HOT 3,500 / ICE 4,000", price: "" },
-          { name: "캐모마일", desc: "HOT 3,000 / ICE 3,500", price: "" },
-          { name: "페퍼민트", desc: "HOT 3,000 / ICE 3,500", price: "" },
-
-          { name: "콜라(캔) pet", desc: "", price: "2,000원" },
-          { name: "사이다(칠성) pet", desc: "", price: "2,000원" },
+        subtitle: "HOT / COLD",
+        type: "table",
+        columns: ["hot", "cold"],
+        rows: [
+          { name: "아메리카노", hot: "2,500", cold: "2,500" },
+          { name: "헤이즐넛 아메리카노", hot: "2,700", cold: "3,000" },
+          { name: "카페라떼", hot: "3,000", cold: "3,300" },
+          { name: "바닐라라떼", hot: "3,500", cold: "3,800" },
         ],
-        note: "※ HOT/ICE 표기 없는 음료는 기본 ICE 기준이에요."
+        extra: [
+          { name: "아이스티", price: "3,500원" },
+          { name: "딸기라떼", price: "4,000원" },
+          { name: "초코라떼", price: "4,000원" },
+          { name: "자몽/레몬/청포도 에이드", price: "4,500원" },
+          { name: "블루베리 요거트", price: "4,800원" },
+          { name: "딸기 / 망고 요거트", price: "4,800원" },
+          { name: "자몽차 / 유자차", price: "HOT 3,500 / ICE 4,000" },
+          { name: "캐모마일", price: "HOT 3,000 / ICE 3,500" },
+          { name: "페퍼민트", price: "HOT 3,000 / ICE 3,500" },
+          { name: "콜라(캔) pet", price: "2,000원" },
+          { name: "사이다(칠성) pet", price: "2,000원" },
+        ],
+        note: "※ 커피는 HOT/COLD 표로, 기타 음료는 아래 리스트에서 확인하세요."
       },
 
       set: {
         title: "🎁 세트메뉴",
         subtitle: "세트 구성",
+        type: "list",
         items: [
           { name: "아메리칸 핫도그 + 음료", desc: "", price: "6,500원~" },
           { name: "수제 타코야끼(12알) + 음료", desc: "", price: "8,500원~" },
@@ -291,6 +410,56 @@
 
     function render(key){
       const data = MENU[key];
+
+      // ✅ 커피/음료: 표(table) 렌더
+      if (data.type === "table") {
+        panel.innerHTML = `
+          <div class="panel-head">
+            <h2>${data.title}</h2>
+            <div class="sub">${data.subtitle}</div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="price-table">
+              <thead>
+                <tr>
+                  <th class="left">COFFEE</th>
+                  <th>hot</th>
+                  <th>cold</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${data.rows.map(r => `
+                  <tr>
+                    <td class="left">${r.name}</td>
+                    <td>${r.hot}</td>
+                    <td>${r.cold}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+
+          ${data.extra?.length ? `
+            <div class="extra-title">기타 음료</div>
+            <div class="price-list">
+              ${data.extra.map(it => `
+                <div class="row">
+                  <div class="left">
+                    <div class="item">${it.name}</div>
+                  </div>
+                  <div class="price">${it.price}</div>
+                </div>
+              `).join("")}
+            </div>
+          ` : ""}
+
+          <div class="note">${data.note}</div>
+        `;
+        return;
+      }
+
+      // ✅ 나머지: 리스트(list) 렌더
       panel.innerHTML = `
         <div class="panel-head">
           <h2>${data.title}</h2>
@@ -322,7 +491,511 @@
       });
     });
 
-    // 첫 화면(원하면 "tako"로 바꿔도 됨)
+    // 첫 화면
+    render("hotdog");
+  </script>
+</body>
+</html><!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HOT&TAKO1119</title>
+
+  <style>
+    :root{
+      --bg:#070809;
+      --line:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --accent:#ff4d4d;
+      --shadow:0 14px 38px rgba(0,0,0,.45);
+      --radius:18px;
+      --panelbg: rgba(255,255,255,.05);
+      --rowbg: rgba(0,0,0,.20);
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 560px at 50% 0%, rgba(255,77,77,.22), transparent 60%),
+        linear-gradient(#0a0b0d, #050607 40%, #050607);
+    }
+
+    /* ===== Header (네이버 느낌: 왼쪽 로고) ===== */
+    header{
+      background: var(--accent);
+      color:#fff;
+      padding: 14px 16px;
+      font-weight: 950;
+      letter-spacing: .2px;
+    }
+    .header-inner{
+      max-width: 1100px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+    }
+    .brand-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:#fff;
+    }
+    .logo{
+      width:42px;
+      height:auto;
+      object-fit:contain;
+      display:block;
+    }
+    .brand-title{
+      font-size:20px;
+      font-weight:950;
+      line-height:1;
+    }
+
+    .wrap{ max-width: 1100px; margin:0 auto; padding: 22px 16px 40px; }
+
+    /* ✅ (요청) header와 탭 사이 문구 제거 완료: subtitle 없음 */
+
+    /* ===== Tabs (4개) ===== */
+    .tabs{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 14px;
+      margin: 14px 0 18px;
+    }
+    .tab{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding: 16px 14px;
+      min-height: 86px;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      text-align:center;
+    }
+    .tab:hover{ transform: translateY(-1px); }
+    .tab .emoji{ font-size: 20px; }
+    .tab .name{ font-weight: 950; }
+    .tab .hint{ font-size: 12px; color: var(--muted); }
+
+    .tab.active{
+      border-color: rgba(255,77,77,.65);
+      background: linear-gradient(180deg, rgba(255,77,77,.22), rgba(255,255,255,.03));
+    }
+
+    /* ===== Panel ===== */
+    .panel{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panelbg);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .panel-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 12px;
+    }
+    .panel-head h2{
+      margin:0;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: .2px;
+    }
+    .panel-head .sub{
+      font-size: 12px;
+      color: var(--muted);
+      text-align:right;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    /* 기본 리스트(핫도그/타코/세트) */
+    .price-list{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: var(--rowbg);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .left{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 0;
+    }
+    .item{
+      font-weight: 900;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+      max-width: 62vw;
+    }
+    .desc{
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .price{
+      font-weight: 950;
+      white-space: nowrap;
+      letter-spacing:.2px;
+    }
+    .note{
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ✅ 음료(커피) 표 스타일 */
+    .table-wrap{
+      overflow:auto;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    .price-table{
+      width:100%;
+      border-collapse: collapse;
+      min-width: 520px;
+    }
+    .price-table th,
+    .price-table td{
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      font-size: 14px;
+    }
+    .price-table thead th{
+      color: rgba(255,255,255,.85);
+      font-weight: 950;
+      text-transform: none;
+    }
+    .price-table th.left,
+    .price-table td.left{
+      text-align:left;
+      width: 60%;
+    }
+    .price-table th:not(.left),
+    .price-table td:not(.left){
+      text-align:right;
+      width: 20%;
+      white-space: nowrap;
+    }
+    .extra-title{
+      margin: 16px 0 10px;
+      font-weight: 950;
+      color: rgba(255,255,255,.88);
+    }
+
+    /* ===== Footer (네이버 느낌: 가운데 링크들) ===== */
+    .footer{
+      margin-top: 60px;
+      padding: 28px 16px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      text-align:center;
+    }
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap: 10px 18px;
+      margin-bottom: 14px;
+    }
+    .footer-links a{
+      color: rgba(255,255,255,.72);
+      text-decoration:none;
+      font-size: 13px;
+    }
+    .footer-links a:hover{
+      color: #fff;
+      text-decoration: underline;
+    }
+    .footer-info{
+      color: rgba(255,255,255,.62);
+      font-size: 12px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .footer-copy{
+      color: rgba(255,255,255,.45);
+      font-size: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 820px){
+      .tabs{ grid-template-columns: 1fr 1fr; }
+      .panel-head{ flex-direction:column; align-items:flex-start; }
+      .panel-head .sub{ text-align:left; white-space: normal; }
+      .item{ max-width: 72vw; }
+    }
+    @media (max-width: 480px){
+      .tabs{ grid-template-columns: 1fr; }
+      .brand-title{ font-size: 18px; }
+      .logo{ width: 38px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ 왼쪽 상단 로고(네이버 느낌) -->
+  <header>
+    <div class="header-inner">
+      <a class="brand-link" href="./" aria-label="HOT&TAKO1119 홈">
+        <img src="mascot.png" class="logo" alt="HOT&TAKO1119 마스코트">
+        <div class="brand-title">HOT&TAKO1119</div>
+      </a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- ✅ 탭 4개 -->
+    <div class="tabs" role="tablist" aria-label="메뉴 탭">
+      <div class="tab active" data-tab="hotdog" role="tab" aria-selected="true">
+        <div class="emoji">🌭</div>
+        <div class="name">핫도그</div>
+        <div class="hint">눌러서 가격 보기</div>
+      </div>
+
+      <div class="tab" data-tab="tako" role="tab" aria-selected="false">
+        <div class="emoji">🍡</div>
+        <div class="name">타코야끼</div>
+        <div class="hint">눌러서 가격 보기</div>
+      </div>
+
+      <div class="tab" data-tab="drink" role="tab" aria-selected="false">
+        <div class="emoji">☕</div>
+        <div class="name">커피·음료</div>
+        <div class="hint">눌러서 가격 보기</div>
+      </div>
+
+      <div class="tab" data-tab="set" role="tab" aria-selected="false">
+        <div class="emoji">🎁</div>
+        <div class="name">세트메뉴</div>
+        <div class="hint">눌러서 가격 보기</div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="#menu">메뉴</a>
+    <a href="tel:0626527411">전화</a>
+    <a href="https://search.naver.com/search.naver?query=핫%26타코1119" target="_blank">네이버검색</a>
+    <a href="https://www.instagram.com/hot_tako_1119" target="_blank">인스타그램</a>
+  </div>
+
+  <div class="footer-info">
+    <b>HOT&TAKO1119</b><br><br>
+
+    📍 도로명: 광주 남구 봉선로 76 상가109동 지하2층 204호<br>
+    📍 지번: 광주 남구 주월동 1301<br><br>
+
+    ⏰ 매주 월요일 휴무<br>
+    ⏰ 화·수·목·금·토·일 11:00 - 21:30 (21:25 라스트오더)<br><br>
+
+    📞 <a href="tel:0626527411" style="color:rgba(255,255,255,.72); text-decoration:none;">
+    062-652-7411
+    </a>
+  </div>
+
+  <div class="footer-copy">
+    © HOT&TAKO1119
+  </div>
+</footer>
+
+  <script>
+    // ✅ 메뉴 데이터 (네 메뉴판 기준)
+    const MENU = {
+      hotdog: {
+        title: "🌭 아메리칸 핫도그",
+        subtitle: "주문 즉시 조리",
+        type: "list",
+        items: [
+          { name: "클래식 핫도그", desc: "", price: "5,000원" },
+          { name: "갈릭 핫도그", desc: "", price: "5,500원" },
+          { name: "어니언 핫도그", desc: "", price: "5,500원" },
+          { name: "에그 핫도그", desc: "", price: "5,500원" },
+          { name: "베이컨 칠리 핫도그", desc: "", price: "6,000원" },
+          { name: "바베큐 칠리 핫도그", desc: "", price: "6,000원" },
+          { name: "스파이시 칠리 핫도그", desc: "", price: "6,000원" },
+        ],
+        note: "※ 재료 소진 시 조기 마감될 수 있어요."
+      },
+
+      tako: {
+        title: "🍡 수제 타코야끼",
+        subtitle: "조리시간 15~20초 소요",
+        type: "list",
+        items: [
+          { name: "오리지널", desc: "8알 / 12알 / 20알", price: "5,000 / 7,000 / 12,000원" },
+          { name: "매콤", desc: "8알 / 12알 / 20알", price: "5,000 / 7,000 / 12,000원" },
+          { name: "갈릭", desc: "8알 / 12알 / 20알", price: "5,500 / 7,500 / 13,000원" },
+          { name: "와사비마요", desc: "8알 / 12알 / 20알", price: "5,500 / 7,500 / 13,000원" },
+          { name: "불난마요", desc: "8알 / 12알 / 20알", price: "5,500 / 7,500 / 13,000원" },
+          { name: "스위트칠리", desc: "8알 / 12알 / 20알", price: "5,500 / 7,500 / 13,000원" },
+          { name: "불닭", desc: "8알 / 12알 / 20알", price: "5,500 / 7,500 / 13,000원" },
+          { name: "불닭볶음면", desc: "컵 / 비조리", price: "2,000원" },
+          { name: "까르보 불닭볶음면", desc: "컵 / 비조리", price: "2,000원" },
+        ],
+        note: "※ 조리시간이 있어요(15~20초). 바쁠 땐 조금만 기다려주세요!"
+      },
+
+      // ✅ 커피는 표 스타일(예시 스타일)로 보이게
+      drink: {
+        title: "☕ 커피 & 음료",
+        subtitle: "HOT / COLD",
+        type: "table",
+        columns: ["hot", "cold"],
+        rows: [
+          { name: "아메리카노", hot: "2,500", cold: "2,500" },
+          { name: "헤이즐넛 아메리카노", hot: "2,700", cold: "3,000" },
+          { name: "카페라떼", hot: "3,000", cold: "3,300" },
+          { name: "바닐라라떼", hot: "3,500", cold: "3,800" },
+        ],
+        extra: [
+          { name: "아이스티", price: "3,500원" },
+          { name: "딸기라떼", price: "4,000원" },
+          { name: "초코라떼", price: "4,000원" },
+          { name: "자몽/레몬/청포도 에이드", price: "4,500원" },
+          { name: "블루베리 요거트", price: "4,800원" },
+          { name: "딸기 / 망고 요거트", price: "4,800원" },
+          { name: "자몽차 / 유자차", price: "HOT 3,500 / ICE 4,000" },
+          { name: "캐모마일", price: "HOT 3,000 / ICE 3,500" },
+          { name: "페퍼민트", price: "HOT 3,000 / ICE 3,500" },
+          { name: "콜라(캔) pet", price: "2,000원" },
+          { name: "사이다(칠성) pet", price: "2,000원" },
+        ],
+        note: "※ 커피는 HOT/COLD 표로, 기타 음료는 아래 리스트에서 확인하세요."
+      },
+
+      set: {
+        title: "🎁 세트메뉴",
+        subtitle: "세트 구성",
+        type: "list",
+        items: [
+          { name: "아메리칸 핫도그 + 음료", desc: "", price: "6,500원~" },
+          { name: "수제 타코야끼(12알) + 음료", desc: "", price: "8,500원~" },
+          { name: "아메리칸 핫도그 + 수제 타코야끼(8알) + 음료", desc: "", price: "11,000원~" },
+        ],
+        note: "※ ‘~’ 표시는 선택 메뉴에 따라 가격이 달라질 수 있어요."
+      }
+    };
+
+    const tabs = document.querySelectorAll(".tab");
+    const panel = document.getElementById("panel");
+
+    function render(key){
+      const data = MENU[key];
+
+      // ✅ 커피/음료: 표(table) 렌더
+      if (data.type === "table") {
+        panel.innerHTML = `
+          <div class="panel-head">
+            <h2>${data.title}</h2>
+            <div class="sub">${data.subtitle}</div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="price-table">
+              <thead>
+                <tr>
+                  <th class="left">COFFEE</th>
+                  <th>hot</th>
+                  <th>cold</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${data.rows.map(r => `
+                  <tr>
+                    <td class="left">${r.name}</td>
+                    <td>${r.hot}</td>
+                    <td>${r.cold}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+
+          ${data.extra?.length ? `
+            <div class="extra-title">기타 음료</div>
+            <div class="price-list">
+              ${data.extra.map(it => `
+                <div class="row">
+                  <div class="left">
+                    <div class="item">${it.name}</div>
+                  </div>
+                  <div class="price">${it.price}</div>
+                </div>
+              `).join("")}
+            </div>
+          ` : ""}
+
+          <div class="note">${data.note}</div>
+        `;
+        return;
+      }
+
+      // ✅ 나머지: 리스트(list) 렌더
+      panel.innerHTML = `
+        <div class="panel-head">
+          <h2>${data.title}</h2>
+          <div class="sub">${data.subtitle}</div>
+        </div>
+
+        <div class="price-list">
+          ${data.items.map(it => `
+            <div class="row">
+              <div class="left">
+                <div class="item">${it.name}</div>
+                ${it.desc ? `<div class="desc">${it.desc}</div>` : ``}
+              </div>
+              ${it.price ? `<div class="price">${it.price}</div>` : ``}
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="note">${data.note}</div>
+      `;
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener("click", () => {
+        tabs.forEach(x => { x.classList.remove("active"); x.setAttribute("aria-selected","false"); });
+        t.classList.add("active");
+        t.setAttribute("aria-selected","true");
+        render(t.dataset.tab);
+      });
+    });
+
+    // 첫 화면
     render("hotdog");
   </script>
 </body>
